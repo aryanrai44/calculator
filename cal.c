@@ -1,105 +1,153 @@
 #include <stdio.h>
 
-void show_menu();
-int option();
-void choice(int a);
-void sum();
-void subtract();
-void multiply();
-void divide();
+int add (int a, int b);
+int subtract (int a, int b);
+int multiply (int a, int b);
+float divide (int a, int b);
+void show_menu ();
+void user_input (int *a,int *b);
+void choice (int a);
+int login ();
 
 
-int main()
+int main ()
 {
-    show_menu();
-    int select = option();
-    choice(select);  
-
+    login ();
     return 0;
 }
 
 
 
-void show_menu()
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+int login ()
 {
-    printf("1.Sum\n");
-    printf("2.Subtract\n");
-    printf("3.Multiply\n");
-    printf("4.Divide\n");
+    int a;
+        while (1)
+    {
+        show_menu ();
+        printf("SELECT: ");
+
+        if (scanf("%d",&a) !=1 )
+        {
+            printf("invalid input ");
+            return 1;
+        }
+        if (a == 5)
+            break;
+        choice(a);
+        }
+        return 0;
+
 }
 
-int option()
-{
-    int a=0;
-    printf("Option: ");
-    scanf("%d",&a);
-    return a;
-}
-
-void choice(int a)
+void choice (int a)
 {
     switch (a)
     {
     case 1:
-        sum();
+        {  int a,b;
+           user_input(&a,&b);
+           int sum = add (a,b);
+           printf("%d + %d = %d \n",a,b,sum);
+        }
         break;
     case 2:
-        subtract();
-        break;
+         {
+           int a,b;
+           user_input(&a,&b);
+           int sub = subtract (a,b);
+           printf("%d - %d = %d \n",a,b,sub);
+         }
+         break;
     case 3:
-        multiply();
-        break;
+         {
+           int a,b;
+           user_input(&a,&b);
+           int multi = multiply (a,b);
+           printf("%d * %d = %d \n",a,b,multi);
+         }
+         break;
     case 4:
-        divide();
-        break;
+         {
+           int a,b;
+           user_input(&a,&b);
+           float div = divide (a,b);
+           printf("%d / %d = %.3f \n",a,b,div);
+           if (b==0)
+            {
+              printf("cannot divide with 0.\n");
+            }
+         }  
+         break;
     default:
-        printf("Invalid option\n");
-    break;
+          printf("invalid input \n");
+          break;
     }
 }
 
-
-
-void sum()
+void show_menu ()
 {
-    int a,b,solution;
-    printf("First Number: ");
-    scanf("%d",&a);
-    printf("Second number: ");
-    scanf("%d",&b);
-    solution=a+b;
-    printf("%d + %d = %d \n",a,b,solution);
+    char list [5][10]= {"Add","Subtract","Multiply","Divide","Exit"};
+    for (int i=0; i<5; i++)
+    {
+        int counter=i;
+        counter++; 
+        printf("%d %s\n",counter,list[i]);   
+    }
 }
 
-void subtract()
+void user_input (int *a,int *b)
 {
-    int a,b,solution;
-    printf("First Number: ");
-    scanf("%d",&a);
+    printf("First number: ");
+    scanf("%d",a);
     printf("Second number: ");
-    scanf("%d",&b);
-    solution=a-b;
-    printf("%d - %d = %d \n",a,b,solution);
+    scanf("%d",b);
 }
 
-void multiply()
+int add (int a, int b)
 {
-    int a,b,solution;
-    printf("First Number: ");
-    scanf("%d",&a);
-    printf("Second number: ");
-    scanf("%d",&b);
-    solution=a*b;
-    printf("%d * %d = %d \n",a,b,solution);
+    return a+b;
 }
 
-void divide()
+int subtract (int a, int b)
 {
-    int a,b,solution;
-    printf("First Number: ");
-    scanf("%d",&a);
-    printf("Second number: ");
-    scanf("%d",&b);
-    solution=a/b;
-    printf("%d / %d = %d \n",a,b,solution);
+    return a-b;
+}
+
+int multiply (int a, int b)
+{
+    return a*b;
+}
+
+float divide (int a, int b)
+{
+    return (float)a/b;
+}
+
+int isprime ()
+{
+    
 }
