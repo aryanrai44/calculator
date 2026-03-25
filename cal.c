@@ -5,14 +5,14 @@ int subtract (int a, int b);
 int multiply (int a, int b);
 float divide (int a, int b);
 void show_menu ();
-void user_input (int *a,int *b);
+int user_input (int *a,int *b);
 void choice (int a);
 int login ();
-
+int validator (int *a);
 
 int main ()
 {
-    login ();
+    login (); 
     return 0;
 }
 
@@ -34,13 +34,14 @@ int main ()
 
 
 
-
-
-
-
-
-
-
+int validator (int *a)
+{ 
+            if (scanf("%d",a) !=1 )
+        {
+            printf("invalid input\n");
+        }
+        
+}
 
 int login ()
 {
@@ -49,58 +50,60 @@ int login ()
     {
         show_menu ();
         printf("SELECT: ");
-
-        if (scanf("%d",&a) !=1 )
+        if (validator(&a)!=1)
         {
-            printf("invalid input ");
             return 1;
         }
-        if (a == 5)
+        
+
+        if (a==5)
+        {
             break;
+        }
+        
         choice(a);
         }
         return 0;
 
 }
 
-void choice (int a)
+void choice (int c)
 {
-    switch (a)
+    int a,b;
+    user_input(&a,&b);
+    switch (c)
     {
     case 1:
-        {  int a,b;
-           user_input(&a,&b);
+        {  
            int sum = add (a,b);
            printf("%d + %d = %d \n",a,b,sum);
         }
         break;
     case 2:
          {
-           int a,b;
-           user_input(&a,&b);
+           
            int sub = subtract (a,b);
            printf("%d - %d = %d \n",a,b,sub);
          }
          break;
     case 3:
          {
-           int a,b;
-           user_input(&a,&b);
+          
            int multi = multiply (a,b);
            printf("%d * %d = %d \n",a,b,multi);
          }
          break;
     case 4:
          {
-           int a,b;
-           user_input(&a,&b);
-           float div = divide (a,b);
-           printf("%d / %d = %.3f \n",a,b,div);
+          
            if (b==0)
             {
               printf("cannot divide with 0.\n");
             }
-         }  
+            else{
+           float div = divide (a,b);
+           printf("%d / %d = %.3f \n",a,b,div);}
+        }  
          break;
     default:
           printf("invalid input \n");
@@ -119,12 +122,20 @@ void show_menu ()
     }
 }
 
-void user_input (int *a,int *b)
+int user_input (int *a,int *b)
 {
     printf("First number: ");
-    scanf("%d",a);
+    if (validator(a)!=1)
+    {
+        return 1;
+    }
+    
     printf("Second number: ");
-    scanf("%d",b);
+    if (validator(b)!=1)
+    {
+        return 1;
+    }
+
 }
 
 int add (int a, int b)
@@ -147,7 +158,7 @@ float divide (int a, int b)
     return (float)a/b;
 }
 
-int isprime ()
+int isprime (int a)
 {
     
 }
